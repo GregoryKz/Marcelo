@@ -1,0 +1,161 @@
+:root {
+  --fundo: #f6efe6;
+  --painel: #ffffff;
+  --cafe: #6b3f22;
+  --cafe-claro: #a8714a;
+  --texto: #2b2018;
+  --suave: #8a7a6c;
+  --erro: #c0392b;
+  --borda: #e3d6c8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+.topo {
+  background: var(--cafe);
+  color: #fff;
+  text-align: center;
+  padding: 28px 16px;
+}
+.topo h1 { margin: 0 0 6px; }
+.topo p  { margin: 0; opacity: .85; }
+
+.conteudo {
+  max-width: 980px;
+  margin: 28px auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.painel {
+  background: var(--painel);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .06);
+}
+.painel h2 { margin-top: 0; color: var(--cafe); }
+
+/* ---------- FORMULÁRIO ---------- */
+form label {
+  display: block;
+  font-weight: 600;
+  margin-top: 14px;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  border: 2px solid var(--borda);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+form textarea { min-height: 70px; resize: vertical; }
+
+/* Estado de erro: o JS adiciona esta classe no campo */
+.campo-invalido {
+  border-color: var(--erro);
+  background: #fdf0ee;
+}
+
+/* Mensagem de erro: fica vazia até o JS escrever nela */
+.msg-erro {
+  display: block;
+  min-height: 18px;
+  margin-top: 4px;
+  color: var(--erro);
+  font-size: .85rem;
+}
+
+#btn-pedir {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--cafe);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+#btn-pedir:hover { background: var(--cafe-claro); }
+
+/* ---------- LISTA DE PEDIDOS ---------- */
+.badge {
+  display: inline-block;
+  min-width: 28px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--cafe);
+  color: #fff;
+  font-size: .9rem;
+  text-align: center;
+}
+
+#lista-vazia { color: var(--suave); font-style: italic; }
+
+/* O JS adiciona esta classe para esconder a frase "Nenhum pedido ainda." */
+.escondido { display: none; }
+
+#lista-pedidos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* O card do pedido ainda NÃO existe no HTML.
+   O CSS já está pronto esperando o JS criar o <li class="pedido">. */
+.pedido {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-left: 5px solid var(--cafe-claro);
+  border-radius: 8px;
+  background: #fbf6f0;
+}
+.pedido-nome  { font-size: 1.05rem; }
+.pedido-desc  { grid-column: 1; color: var(--suave); }
+.pedido-total { grid-column: 2; grid-row: 1 / 3; align-self: center; font-weight: 700; color: var(--cafe); }
+.pedido-obs   { grid-column: 1 / 3; color: var(--suave); font-size: .9rem; }
+
+.btn-remover {
+  grid-column: 1 / 3;
+  justify-self: start;
+  padding: 4px 10px;
+  border: 1px solid var(--erro);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--erro);
+  cursor: pointer;
+}
+.btn-remover:hover { background: var(--erro); color: #fff; }
+
+/* Desafio final: selo de pedido grande */
+.pedido.grande { border-left-color: #d4a017; }
+
+.resumo {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 2px dashed var(--borda);
+  text-align: right;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 720px) {
+  .conteudo { grid-template-columns: 1fr; }
+}
